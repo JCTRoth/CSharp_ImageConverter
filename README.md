@@ -7,9 +7,9 @@ The Program can compress images based on there resulution to get a more  consist
 
 
 
-![](/img/2.png) 
-
 ![](/img/1.png) 
+
+![](/img/2.png) 
 
 ![](/img/3.png) 
 
