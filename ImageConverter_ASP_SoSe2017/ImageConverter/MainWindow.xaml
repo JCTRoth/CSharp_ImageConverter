@@ -1,0 +1,76 @@
+﻿<Window x:Class="ImageConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageConverter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="393" Width="907">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="1.8*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="Add" Click="Button_Click_Add" Grid.Column="1" HorizontalAlignment="Left" Margin="52,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Go to Compress" Grid.Column="3" HorizontalAlignment="Left" Margin="233,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="121" Click="Button_Click_Compress"/>
+        <Button Content="Go to Editor" Grid.Column="3" HorizontalAlignment="Right" Margin="0,10,234,0" Grid.Row="2" VerticalAlignment="Top" Width="121" Click="Button_Click_Editor"/>
+        <local:MyTreeView x:Name="TreeViewDirectory"
+                  SelectedItemChanged="FoldersItem_SelectedItemChanged"
+                  Grid.Column="1" Grid.Row="1"
+                  >
+            <local:MyTreeView.Resources>
+                <Style TargetType="{x:Type local:MyTreeViewItem}">
+
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Add the HeaderToImage converter as source for the image -->
+                                    <CheckBox Name="CheckBoxTreeView" VerticalAlignment="Center" IsChecked="{Binding Path=IsChecked , RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyTreeViewItem}}, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Focusable="False"
+                                       PreviewMouseDown = "OnMouseClickCheckBox" IsThreeState="True"   />
+                                    <Image Name="img"  Width="20" Height="20" Stretch="Fill"
+                                           Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type local:MyTreeViewItem}},
+                                            Path=FileType,
+                                            Converter={x:Static local:HeaderToImageConverter.Instance}}"
+                                    />
+                                    <TextBlock Text="{Binding}" Margin="5,0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </local:MyTreeView.Resources>
+        </local:MyTreeView>
+        <ListView x:Name="ListViewSelectedFiles" GridViewColumnHeader.Click ="ListViewHeaderClick" ItemsSource="{Binding Path=Files , UpdateSourceTrigger=PropertyChanged , Mode=TwoWay}" Grid.Column="3" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=Name , UpdateSourceTrigger=PropertyChanged , Mode=TwoWay}">
+                        <GridViewColumnHeader Tag="Name">Name</GridViewColumnHeader>                
+                    </GridViewColumn>
+                    <GridViewColumn Width="75" DisplayMemberBinding="{Binding Path=Size , UpdateSourceTrigger=PropertyChanged , Mode=TwoWay}">
+                        <GridViewColumnHeader Tag="Size">Größe</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged , Mode=TwoWay}">
+                        <GridViewColumnHeader Tag="Type">Typ</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding Path=Changed, UpdateSourceTrigger=PropertyChanged , Mode=TwoWay}">
+                        <GridViewColumnHeader Tag="Changed">Änderungsdatum</GridViewColumnHeader>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Click="Button_Click_Move_File_Up" Content="Up" Grid.Column="4" Grid.Row="1" Margin="0,0,0,228"/>
+        <Button Click="Button_Click_Move_File_Down" Content="Down" Grid.Column="4" Grid.Row="1" Margin="0,228,0,0"/>
+        <Button Click="Button_Click_Remove_File" Content="Remove" Grid.Column="4" Grid.Row="1" Margin="0,104,0,104"/>
+    </Grid>
+</Window>

@@ -1,0 +1,40 @@
+﻿<Window x:Class="ImageConverter.CompressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageConverter"
+        mc:Ignorable="d"
+        Title="CompressWindow" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Slider x:Name="Manual_SliderQuality" Grid.Column="1" Grid.Row="1" Maximum="100" ValueChanged="Manual_SliderQuality_ValueChanged" />
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <RadioButton  Content="Replace Images" Checked="RadioButton_Checked_Overwrite" IsChecked="True"/>
+            <RadioButton  Content="Save Images in" Checked="RadioButton_Checked_SaveASCopy"/>
+        </StackPanel>
+        <Button x:Name="ButtonChoseFolder" Content="Chose Folder" Grid.Column="2" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="Button_Click_ChooseFolder"/>
+        <Label x:Name="LabelQualitySliderValue" Content="{Binding ElementName=Manual_SliderQuality, Path=Value}" Grid.Column="2" Grid.Row="1"/>
+        <Button Content="Compress" Grid.Column="2" Grid.Row="4" Click="Button_Click_Compress" Margin="0,10,0,0"/>
+        <Label x:Name="LabelFolder" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="10,27,0,0" Grid.Row="3" VerticalAlignment="Top" Width="112" Height="46"/>
+        <Button x:Name="ButtonChangeMode" Content="Switch to Automated" Grid.Column="1" Grid.Row="4" Click="Button_Click_ManualMode" Margin="0,10,0,0"/>
+        <StackPanel x:Name="StackPanelEasy" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
+            <RadioButton Checked="RadioButton_Level_High"  Content="High" IsChecked="True" x:Name="High" />
+            <RadioButton Checked="RadioButton_Level_Medium"  Content="Medium" x:Name="Medium" />
+            <RadioButton Checked="RadioButton_Level_Low" Content="Low" x:Name="Low" />
+        </StackPanel>
+
+    </Grid>
+</Window>

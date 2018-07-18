@@ -1,0 +1,43 @@
+﻿<Window x:Class="ImageConverter.EditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageConverter"
+        mc:Ignorable="d"
+        Title="Editor Window" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Slider x:Name="KontrastSliderQuality" Grid.Column="2" Grid.Row="2" Maximum="100" ValueChanged="Kontrast_SliderQuality_ValueChanged" Margin="0,10,0,32" Grid.RowSpan="2" />
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <RadioButton  Content="Replace Images" Checked="RadioButton_Checked_Overwrite_Editor" IsChecked="True"/>
+            <RadioButton  Content="Save Images in" Checked="RadioButton_Checked_SaveASCopy_Editor"/>
+        </StackPanel>
+        <Button x:Name="ButtonChoseFolderEditor" Content="Chose Folder" Grid.Column="2" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="Button_Click_ChooseFolderEditor"/>
+        <Label x:Name="LabelQualitySliderValueContrast" Content="{Binding ElementName=KontrastSliderQuality, Path=Value}" Grid.Column="2" Grid.Row="2" Margin="0,35,0,0"/>
+        <Button Content="Edit" Grid.Column="2" Grid.Row="4" Click="Button_Click_Edit" Margin="0,10,0,0"/>
+        <Label x:Name="LabelFolderEditor" Content="" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="154" Height="25" Margin="111,22,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <StackPanel x:Name="RotationRadioButtons" Grid.Column="2" Grid.Row="1" Visibility="Visible">
+            <RadioButton Checked="RadioButton_Rotation0"  Content=" 0°" IsChecked="True" x:Name="R0" />
+            <RadioButton Checked="RadioButton_Rotation45"  Content=" 45°" x:Name="R45" />
+            <RadioButton Checked="RadioButton_Rotation90"  Content=" 90°" x:Name="R90" />
+            <RadioButton Checked="RadioButton_Rotation180" Content=" 180°" x:Name="R180" />
+            <RadioButton Checked="RadioButton_Rotation270" Content=" 270°" x:Name="R270" />
+        </StackPanel>
+        <Label Content="           Paper to &#xD;&#xA;Letters Contrast Level" x:Name="PaperToLeterContrast" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Height="51" Width="133"/>
+        <Label Content="   &#xD;&#xA;       Rotate Images" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Height="62" Width="133"/>
+
+    </Grid>
+</Window>
