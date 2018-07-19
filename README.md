@@ -1,9 +1,9 @@
 # ASPdotNet_ImageConverter
-Based on ASPdotnet - WPF - Magic.net ->ImageMagick
+Based on ASPdotnet - WPF - Magick.net ->ImageMagick
 
 Image Converter and Manipulation GUI for Windows systems, based on ImageMagick.
 
-The Program can compress images based on there resulution to get a more  consistent image compression level when mixed image resolutions are inputed.
+The Program can compress images based on there resulution to get a more  consistent image compression level when mixed image resolutions are inputeded.
 
 
 
