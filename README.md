@@ -1,5 +1,5 @@
 # C# ImageConverter
-Based on ASPdotnet - WPF - Magick.net ->ImageMagick
+Based on WPF - Magick.net ->ImageMagick
 
 Image Converter and Manipulation GUI for Windows systems, based on ImageMagick.
 
